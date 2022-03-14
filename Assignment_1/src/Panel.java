@@ -119,38 +119,6 @@ public class Panel extends JPanel{
                 q.setMissing(t);
                 recursiveRun(q, q.getTileAt(0, 0));
             }
-
-            // for(int i = 0; i < 4;i++){
-            //     Board q = quads.get(i);
-            //     int quadSize = q.getTiles().length - 1;
-    
-            //     if(q.containsMissingTile()){
-            //         recursiveRun(q, q.getMissingTile());
-            //     } else {
-            //         if(i == 0){
-            //             Tile t1 = q.getTileAt(quadSize, quadSize);
-            //             constructTromino.add(t1);
-            //             q.setMissing(t1);
-            //             recursiveRun(q, t1);
-            //         } else if(i == 1){
-            //             Tile t2 = q.getTileAt(0, quadSize);
-            //             constructTromino.add(t2);
-            //             q.setMissing(t2);
-            //             recursiveRun(q, t2);
-            //         }else if(i == 2){
-            //             Tile t3 = q.getTileAt(quadSize, 0);
-            //             constructTromino.add(t3);
-            //             q.setMissing(t3);
-            //             recursiveRun(q, t3);
-            //         }else if(i == 3){
-            //             Tile t4 = q.getTileAt(0, 0);
-            //             constructTromino.add(t4);
-            //             q.setMissing(t4);
-            //             recursiveRun(q, t4);
-            //         }
-            //     }
-            // }
-            // this.trominos.add(new Tromino(constructTromino,  board.getTiles().length));
         }
     }
 
