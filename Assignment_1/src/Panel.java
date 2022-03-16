@@ -127,21 +127,14 @@ public class Panel extends JPanel{
 
         missing.redraw(g, Color.BLACK);
 
-        // trominos.sort((t1, t2) -> {
-        //     int i = t1.getXCentre() - t2.getXCentre();
-        //     if (i == 0) {
-        //         return t1.getYCentre() - t2.getYCentre();
-        //     }
-        //     return i;
-        // });
+        trominos.sort((t1, t2) -> {
+            int i = t1.getXCentre() - t2.getXCentre();
+            if (i == 0) {
+                return t1.getYCentre() - t2.getYCentre();
+            }
+            return i;
+        });
 
-        // if(!trominos.isEmpty()){
-        //     trominos.get(0).paint(g, colors.get(0));
-        //     trominos.get(1).paint(g, colors.get(1));
-        //     trominos.get(2).paint(g, colors.get(2));
-        //     trominos.get(3).paint(g, colors.get(3));
-        //     trominos.get(4).paint(g, colors.get(4));
-        //  }
 
         for(Tromino t : trominos){
             t.paint(g, new Color((int)(Math.random() * 0x1000000)));
