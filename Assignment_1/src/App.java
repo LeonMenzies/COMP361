@@ -9,6 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * The app is the main class for this application.
+ * It is a Jframe that contains the board (JPanel)
+ * and the buttons for the functionality of the
+ * program
+ */
 public class App extends JFrame {
 
     private JTextField inputField;
@@ -20,6 +26,11 @@ public class App extends JFrame {
         setupGui();
     }
 
+    /**
+     * Set up the gui
+     * add the board (JPanel) and the buttons to
+     * this frame
+     */
     private void setupGui(){
 
         this.setSize(size + 50, size + 100);
@@ -34,15 +45,15 @@ public class App extends JFrame {
         this.inputField = new JTextField(10);
         this.inputField.setText("4");
 
+        //use a Gridbaglayout to centre the internal panel
         JPanel centre = new JPanel(new GridBagLayout());
+        //The default board
         board = new Panel(n, n, size / n, 3, 2);
-
         board.setPreferredSize(new Dimension(size, size));
         centre.add(board);
-
         this.add(centre, BorderLayout.CENTER);
 
-        
+        //Create a new random board
         random.addActionListener((e) -> {
             try {
                 n = Integer.parseInt(inputField.getText());
@@ -64,7 +75,7 @@ public class App extends JFrame {
             }
         });
 
-        
+        //Start the algorithm
         start.addActionListener((e) -> {
             if(this.board != null){
                 this.board.run();
@@ -80,10 +91,6 @@ public class App extends JFrame {
         this.setVisible(true);
     }
 
-    
-    /** 
-     * @param args
-     */
     public static void main(String[] args){
         new App();
     }

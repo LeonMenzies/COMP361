@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+/**
+ *
+ */
 public class Panel extends JPanel{
 
     private final Board board;
     private final ArrayList<Tromino> trominos;
-    private final ArrayList<Color> colors;
-    private int colorInd = 0;
     private final Tile missing;
 
 
@@ -23,16 +24,6 @@ public class Panel extends JPanel{
                 temp[row][col] = new Tile(row  * tileSize, col * tileSize, tileSize);
             }
         }
-
-        //Add colors
-        colors = new ArrayList<>();
-        colors.add(new Color(117, 63, 0));
-        colors.add(new Color(244, 165, 73));
-        colors.add(new Color(242, 129, 0));
-        colors.add(new Color(115, 77, 34));
-        colors.add(new Color(191, 102, 0));
-        
-        
 
         missing = temp[missingX][missingY];
         board = new Board(temp, missing);
@@ -139,11 +130,5 @@ public class Panel extends JPanel{
         for(Tromino t : trominos){
             t.paint(g, new Color((int)(Math.random() * 0x1000000)));
         }
-    }
-
-    public Color ranCol(){
-
-        if(colorInd > 4) {colorInd = 0;}
-        return colors.get(colorInd++);
     }
 }
