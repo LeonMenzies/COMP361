@@ -3,6 +3,11 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * This class takes 3 tiles and creates a tromino, the 3 tiles
+ * can then be used to find a centre point, an orientation
+ * and to draw the tromino on the graphics panel
+ */
 public class Tromino {
 
     ArrayList<Tile> tiles;
@@ -21,6 +26,9 @@ public class Tromino {
 
     }
 
+    /**
+     * Find the centre point of the three tiles
+     */
     public void findCentre() {
 
         ArrayList<Integer> xVals = new ArrayList<>();
@@ -40,6 +48,11 @@ public class Tromino {
         findOrientation(xVals, yVals);
     }
 
+    /**
+     * find the orientation
+     * @param xVals - All three x locations
+     * @param yVals - All three y locations
+     */
     public void findOrientation(ArrayList<Integer> xVals, ArrayList<Integer> yVals) {
 
         double allX = xVals
@@ -67,24 +80,30 @@ public class Tromino {
 
     }
 
-
+    /**
+     * print out lcoationa nd orientation in the correct format
+     * @return - The string to be printed
+     */
     @Override
     public String toString() {
-
         return xCentre + " " + (height - yCentre) + " " + orientation;
     }
 
-
+    /**
+     * Paint the tromino and print out the toString
+     * @param g - The graphics object
+     * @param c - The color of this tromino
+     */
     public void paint(Graphics g, Color c) {
-
-
         for (Tile t : tiles) {
             t.redraw(g, c);
         }
-
         System.out.println(this);
     }
 
+    /**
+     * Getters
+     */
     public int getXCentre() {
         return this.xCentre;
     }
@@ -92,6 +111,4 @@ public class Tromino {
     public int getYCentre() {
         return this.yCentre;
     }
-
-
 }

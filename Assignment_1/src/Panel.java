@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
- *
+ * The panel holds the main functionality of the program.
+ * It is a JPanel itself which allows for the board to be redrawn
  */
 public class Panel extends JPanel{
 
@@ -19,29 +20,35 @@ public class Panel extends JPanel{
         Tile[][] temp = new Tile[width][height];
         this.trominos = new ArrayList<>();
 
+        //Set up all the tiles and set one missing one
         for(int row = 0; row < width; row ++){
             for(int col = 0; col < height; col ++){
                 temp[row][col] = new Tile(row  * tileSize, col * tileSize, tileSize);
             }
         }
-
         missing = temp[missingX][missingY];
         board = new Board(temp, missing);
     }
 
-
+    /**
+     * Start the recursive run
+     */
     public void run(){
         trominos.clear();
         recursiveRun(this.board, this.missing);
         this.repaint();
     }
 
+    /**
+     * In charge of the recursion that tiles the board
+     * @param quad - The board which holds a 2d array of tiles
+     * @param missingTile - The missing tile for the given board/quadrant
+     */
     public void recursiveRun(Board quad, Tile missingTile){
-
-
+        //Base case
         if(quad.getTiles().length == 2){
-
             ArrayList<Tile> constructTromino = new ArrayList<>();
+            //Save the tromino as an object
             for(Tile t : quad.return2DArray()){
                 if(!t.equals(missingTile)){
                     constructTromino.add(t);
@@ -49,18 +56,19 @@ public class Panel extends JPanel{
             }
             this.trominos.add(new Tromino(constructTromino, board.getTiles().length));
 
-
-
         } else {
+            //use the divide method to divide the given board into 4 quadrants
             ArrayList<Board> quads = quad.divide();
             ArrayList<Tile> constructTromino = new ArrayList<>();
 
             int missingQ = 0;
             int quadSize = quads.get(0).getTiles().length - 1;
-    
+
+            //Iterate the quadrants
             for(int i = 0; i < 4;i++){
                 Board q = quads.get(i);
 
+                    //If it contains the missing tile recursively solve
                     if(q.containsMissingTile()){
                         recursiveRun(q, q.getMissingTile());
                         missingQ = i;
@@ -85,7 +93,7 @@ public class Panel extends JPanel{
 
             this.trominos.add(new Tromino(constructTromino,  board.getTiles().length));
 
-
+            //start the recursion on the other 3 quads
             if(missingQ != 0){
                 Board q = quads.get(0);
                 Tile t = q.getTileAt(quadSize, quadSize);
@@ -113,6 +121,11 @@ public class Panel extends JPanel{
         }
     }
 
+    /**
+     * sort the ArrayList of trominos and redraw them all
+     * Use a random color to draw each tromino
+     * @param g - Graphics object
+     */
     @Override
     public void paint(Graphics g) {
 
