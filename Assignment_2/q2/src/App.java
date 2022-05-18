@@ -30,6 +30,7 @@ public class App extends JFrame {
         find.addActionListener((e) -> {
             if(this.panel != null){
                 panel.compute();
+                panel.repaint();
             }
         });
 
